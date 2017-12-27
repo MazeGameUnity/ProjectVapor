@@ -16,6 +16,8 @@ public class MoveBehaviour : GenericBehaviour
 	private int groundedBool;                       // Animator variable related to whether or not the player is on ground.
 	private bool jump;                              // Boolean to determine whether or not the player started a jump.
 	private bool isColliding;                       // Boolean to determine if the player has collided with an obstacle.
+    private int fightBool;
+    private bool fight;
 
 	// Start is always called after any Awake functions.
 	void Start() 
@@ -23,7 +25,8 @@ public class MoveBehaviour : GenericBehaviour
 		// Set up the references.
 		jumpBool = Animator.StringToHash("Jump");
 		groundedBool = Animator.StringToHash("Grounded");
-		behaviourManager.GetAnim.SetBool (groundedBool, true);
+        fightBool = Animator.StringToHash("Fight");
+        behaviourManager.GetAnim.SetBool (groundedBool, true);
 
 		// Subscribe and register this behaviour as the default behaviour.
 		behaviourManager.SubscribeBehaviour (this);
@@ -39,7 +42,17 @@ public class MoveBehaviour : GenericBehaviour
 		{
 			jump = true;
 		}
-	}
+        if (Input.GetMouseButtonDown(0) && !fight)
+        {
+            fight = true;
+            behaviourManager.GetAnim.SetBool(fightBool, fight);
+        }
+        else if (fight)
+        {
+            fight = false;
+            behaviourManager.GetAnim.SetBool(fightBool, fight);
+        }
+    }
 
 	// LocalFixedUpdate overrides the virtual function of the base class.
 	public override void LocalFixedUpdate()
