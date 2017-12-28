@@ -74,8 +74,8 @@ public class AimBehaviourBasic : GenericBehaviour
 	{
 		aim = false;
 		yield return new WaitForSeconds(0.3f);
-		behaviourManager.GetCamScript.ResetTargetOffsets();
-		behaviourManager.GetCamScript.ResetMaxVerticalAngle();
+		//behaviourManager.GetCamScript.ResetTargetOffsets();
+		//behaviourManager.GetCamScript.ResetMaxVerticalAngle();
 		yield return new WaitForSeconds(0.05f);
 		behaviourManager.RevokeOverridingBehaviour(this);
 	}
@@ -83,9 +83,9 @@ public class AimBehaviourBasic : GenericBehaviour
 	// LocalFixedUpdate overrides the virtual function of the base class.
 	public override void LocalFixedUpdate()
 	{
-		// Set camera position and orientation to the aim mode parameters.
-		if(aim)
-			behaviourManager.GetCamScript.SetTargetOffsets (aimPivotOffset, aimCamOffset);
+        // Set camera position and orientation to the aim mode parameters.
+        if (aim) { }
+			//behaviourManager.GetCamScript.SetTargetOffsets (aimPivotOffset, aimCamOffset);
 	}
 
 	// LocalLateUpdate: manager is called here to set player rotation after camera rotates, avoiding flickering.
@@ -110,13 +110,13 @@ public class AimBehaviourBasic : GenericBehaviour
 		forward = forward.normalized;
 
 		// Always rotates the player according to the camera horizontal rotation in aim mode.
-		Quaternion targetRotation =  Quaternion.Euler(0, behaviourManager.GetCamScript.GetH, 0);
+		//Quaternion targetRotation =  Quaternion.Euler(0, behaviourManager.GetCamScript.GetH, 0);
 
-		float minSpeed = Quaternion.Angle(transform.rotation, targetRotation) * aimTurnSmoothing;
+		//float minSpeed = Quaternion.Angle(transform.rotation, targetRotation) * aimTurnSmoothing;
 
 		// Rotate entire player to face camera.
 		behaviourManager.SetLastDirection(forward);
-		transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, minSpeed * Time.deltaTime);
+		//transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, minSpeed * Time.deltaTime);
 
 	}
 
@@ -125,8 +125,8 @@ public class AimBehaviourBasic : GenericBehaviour
 	{
 		if (crosshair)
 		{
-			float mag = behaviourManager.GetCamScript.GetCurrentPivotMagnitude(aimPivotOffset);
-			if (mag < 0.05f)
+			//float mag = behaviourManager.GetCamScript.GetCurrentPivotMagnitude(aimPivotOffset);
+			//if (mag < 0.05f)
 				GUI.DrawTexture(new Rect(Screen.width / 2 - (crosshair.width * 0.5f),
 										 Screen.height / 2 - (crosshair.height * 0.5f),
 										 crosshair.width, crosshair.height), crosshair);

@@ -48,7 +48,7 @@ public class FlyBehaviour : GenericBehaviour
 				// Set collider direction to vertical.
 				col.direction = 1;
 				// Set camera default offset.
-				behaviourManager.GetCamScript.ResetTargetOffsets();
+				//behaviourManager.GetCamScript.ResetTargetOffsets();
 
 				// Unregister this behaviour and set current behaviour to the default one.
 				behaviourManager.UnregisterBehaviour(this.behaviourCode);
@@ -73,7 +73,7 @@ public class FlyBehaviour : GenericBehaviour
 	public override void LocalFixedUpdate()
 	{
 		// Set camera limit angle related to fly mode.
-		behaviourManager.GetCamScript.SetMaxVerticalAngle(flyMaxVerticalAngle);
+		//behaviourManager.GetCamScript.SetMaxVerticalAngle(flyMaxVerticalAngle);
 
 		// Call the fly manager.
 		FlyManagement(behaviourManager.GetH, behaviourManager.GetV);
